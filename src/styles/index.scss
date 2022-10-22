@@ -1,0 +1,128 @@
+@import './public.scss';
+
+// @import '@/assets/iconfont/iconfont.css';
+
+:root {
+  // 应用项目
+  --text-black-color: #333;
+  --text-white-color: #fff;
+  --primary-color: #007aff;
+  --second-color: yellow;
+  --body-font-size: 12px;
+  --menu-width: 300px;
+  --header-height: 6rem;
+  --header-right-padding: 100px;
+  --content-height: calc(100vh - var(--header-height));
+  --body-left-padding: var(--header-right-left-padding);
+
+  --theme_color: #007aff;
+
+
+  // 组件库
+  --dva-mini-text: 12px;
+  --dva-small-text: 14px;
+  --dva-medium-text: 16px;
+  --dva-large-text: 18px;
+  --dva-primary-color: #007aff;
+  --dva-yellow-color: #FCE173;
+  --dva-green-color: #00fcae;
+  --dva-red-color: #ff4d4f;
+  --dva-gray-color: #97a8be;
+}
+
+svg {
+  overflow: visible;
+  /* Fix Safari rendering bug */
+  transform: translateZ(0);
+}
+
+
+/** 重置表格元素 **/
+body,
+html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  // background-color: rgba(0, 0, 0, 0.78);
+}
+
+#app,
+html,
+body {
+  width: 100%;
+  height: 100%;
+  color: var(--text-white-color);
+  font-family: '微软雅黑', '宋体', Arial, sans-serif;
+}
+
+html,
+body,
+.page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+a {
+  // color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:active {
+    opacity: 0.78;
+  }
+}
+
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+button,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+menu,
+nav,
+img,
+section {
+  margin: 0;
+  padding: 0;
+  border: medium none;
+}
+
+em {
+  font-style: normal;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}

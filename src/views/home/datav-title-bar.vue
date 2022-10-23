@@ -1,5 +1,5 @@
 <template>
-  <div class="title-bar">
+  <div class="title-bar ground_glass">
     <span class="title-text"> {{ logoTitle }} </span>
   </div>
 </template>
@@ -29,9 +29,9 @@ export default {
   width: 100%;
   animation-fill-mode: both;
   -webkit-animation-fill-mode: both;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  background-image: linear-gradient(350deg, #5efce8 10%, #736efe);
+  // box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+  //   rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  // background-image: linear-gradient(350deg, #5efce8 10%, #736efe);
   clip-path: polygon(
     0 0,
     100% 0,

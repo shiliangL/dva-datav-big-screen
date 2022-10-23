@@ -4,3 +4,160 @@
         -8px -8px 20px 0 rgb(54 62 77 / 50%),
         inset 0 4px 20px 0 rgb(36 41 51 / 50%);
 }
+
+
+// 容器十字渐变线
+.linear_gradient_line_cross {
+    position: relative;
+  
+    &::after {
+      content: "";
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      top: 0%;
+      left: 50%;
+      transform: rotate(90deg);
+      background: linear-gradient(0deg, rgba(88, 197, 223, 0.155), rgba(88, 197, 223, 1), rgba(88, 197, 223, 0.155));
+    }
+  
+    &::before {
+      content: "";
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(0, -50%);
+      background: linear-gradient(0deg, rgba(88, 197, 223, 0.155), rgba(88, 197, 223, 1), rgba(88, 197, 223, 0.155));
+    }
+  }
+  
+  // 背景
+  .grid_cross_bg {
+    background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(to right, currentColor 1px, transparent 1px);
+    background-size: 6px 6px;
+  }
+  
+  // 表格
+  .dva_grid_table_wrap {
+  
+    // margin: 10px 0;
+    .dva_grid_table_header {
+      .th {
+        font-size: 16px;
+        padding: 8px 0;
+        text-align: center;
+      }
+    }
+  
+    .dva_grid_table_body {
+      font-size: 14px;
+  
+      .dva_table_body_dva_swiper_slot {
+        width: 100%;
+        height: 100%;
+  
+        .grid {
+          width: 100%;
+          height: 100%;
+          align-items: center;
+        }
+  
+        cursor: pointer;
+  
+        .grid-columns-item {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+  
+          &.center {
+            text-align: center;
+          }
+        }
+  
+        &:active {
+          opacity: 0.78;
+        }
+  
+        &.odd {
+          // clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 20px 100%, 0% 50%);
+          background: linear-gradient(90deg,
+              rgba(69, 186, 255, 0.22) 0%,
+              rgba(38, 191, 255, 0) 100%);
+        }
+      }
+    }
+  }
+  
+  // 动画
+  .fadeOut-aside {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.25, 1, 0.6, 1);
+  
+    @keyframes fadeOut-aside-left {
+      from {
+        opacity: 0;
+        transform: translateX(-50%);
+      }
+  
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  
+    @keyframes fadeOut-aside-right {
+      from {
+        opacity: 0;
+        transform: translateX(50%);
+      }
+  
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  
+    &.left {
+      animation-name: fadeOut-aside-left;
+    }
+  
+    &.right {
+      animation-name: fadeOut-aside-right;
+    }
+  }
+  
+  // 对齐效果
+  .value_baseline {
+    display: flex;
+    align-items: baseline;
+  
+    .number {
+      color: #63e1ff;
+      font-size: 16px;
+    }
+  
+    .unit {
+      font-size: 12px;
+      padding: 0 2px;
+      display: inline-block;
+    }
+  }
+  
+  // 点击效果
+  .click {
+    cursor: pointer;
+  
+    &:active {
+      opacity: 0.78;
+    }
+  }
+  
+  // 分组展示条
+  .dva_stripe_1 {
+    background: linear-gradient(270deg,
+        rgba(65, 139, 194, 0),
+        rgba(65, 139, 194, 0.5));
+  }

@@ -1,14 +1,15 @@
 <template>
-   <div
-      class="navigation"
-      :style="navigationStyle"
+  <div
+    class="navigation"
+    :style="navigationStyle"
+  >
+    <div
+      :class="['navigation-item',{'active': currentActive === index}]"
+      v-for="(item,index) in navigation"
+      :key="index"
+      @click="click2show(item,index)"
     >
-      <div
-        class="navigation-item"
-        v-for="(item,index) in navigation"
-        :key="index"
-        @click="click2Play(item)"
-      >
+      <div class="navigation-item-inner ground_glass">
         <div
           v-if="item.icon"
           :class="['dva-icon','iconfont',item.icon ]"
@@ -21,6 +22,7 @@
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -32,12 +34,32 @@ export default {
     return {
       logoTitle,
       navigation,
-      showNavigationTitle
+      showNavigationTitle,
+      currentActive: null
     }
   },
   computed: {
     navigationStyle () {
       return this.showNavigationTitle ? { gap: '12px' } : { gap: '0px' }
+    }
+  },
+  methods: {
+    click2show (item, index) {
+      this.currentActive = index
+      this.$DatavWindow({
+        type: 'left',
+        styles: {},
+        content: () => import('@/views/aside/smartCityLeftLv1.vue')
+      })
+      this.$DatavWindow({
+        type: 'right',
+        styles: {},
+        content: () => import('@/views/aside/smartCityLeftLv1.vue')
+      })
+      // setTimeout(() => {
+      //   win && win.closed && win.closed()
+      //   console.log(win)
+      // }, 2000)
     }
   }
 }
@@ -46,40 +68,88 @@ export default {
 <style lang="scss" scoped>
 $themeColor: #007aff;
 
-  .navigation {
-    // font-size: 1rem;
-    position: fixed;
-    left: 50%;
-    bottom: 10px;
-    transform: translateX(-50%);
-    z-index: 100;
-    display: flex;
-    gap: 12px;
-    align-items: center;
+.navigation {
+  // font-size: 1rem;
+  position: fixed;
+  left: 50%;
+  gap: 12px;
+  bottom: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  transform: translateX(-50%);
 
-    .navigation-item {
+  .navigation-item {
+    width: 66px;
+    height: 60px;
+    padding: 6px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+    user-select: none;
+    .iconfont {
+      font-size: 32px;
+    }
+    .title {
+      font-size: 14px;
+    }
+
+    &.active {
+      &::after {
+        z-index: 1;
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: -50%;
+        left: -50%;
+
+        transform-origin: bottom right;
+        background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
+        animation: animate 8s linear infinite;
+        animation-delay: -4s; // 动画序列的第 4s 秒位置处立即开始
+      }
+
+      &::before {
+        z-index: 1;
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: -50%;
+        left: -50%;
+
+        transform-origin: bottom right;
+        background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
+        animation: animate 8s linear infinite;
+      }
+    }
+
+    .navigation-item-inner {
+      inset: 1px;
+      z-index: 10;
+      border-radius: 4px;
+      position: absolute;
       cursor: pointer;
-      width: 66px;
       display: flex;
       align-items: center;
+      justify-content: center;
       flex-direction: column;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-
-      .iconfont {
-        font-size: 32px;
-      }
-      .title {
-        font-size: 14px;
-      }
-
-      &:active {
-        opacity: 0.78;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-image: linear-gradient(135deg, #5efce8 10%, #736efe);
-      }
+      // background:#000;
     }
   }
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>

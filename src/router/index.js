@@ -21,7 +21,7 @@ export const routes = [
     path: '/',
     name: 'Home',
     description: '项目主页',
-    component: () => import('@/views/home')
+    component: () => import('@/views/home/datav-layout')
   }
 ]
 

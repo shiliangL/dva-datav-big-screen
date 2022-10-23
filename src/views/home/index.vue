@@ -63,7 +63,7 @@ export default {
       const { mapboxgl, MapboxLanguage } = window
       if (!mapboxgl) return
       mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpbGlhbmdsIiwiYSI6ImNrdG5wbjdjODA1NGkzMW8zZ2w5b2xzNTgifQ.zO_1f362AFeSWsrmE6I-Ww'
-      this.map = new mapboxgl.Map({
+      this._map = new mapboxgl.Map({
         container: this.$el.querySelector('#mapboxgl'),
         style: 'mapbox://styles/mapbox/dark-v10',
         center: [114.185125079355, 22.6322002129776],
@@ -72,16 +72,52 @@ export default {
         minzoom: 12,
         pitch: 45
       })
-      const { map } = this
-      map.on('load', () => {
-        // this.fetchLine(map)
-        // this.initLayout(this.map)
-      })
-      this.$nextTick().then(() => {
+      this._map.on('load', () => {
+        this.init3dLayer()
         mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js')
-        map.addControl(new MapboxLanguage({
+        this._map.addControl(new MapboxLanguage({
           defaultLanguage: 'zh-Hans'
         }))
+      })
+    },
+    init3dLayer () {
+      if (!this._map) return
+      const { layers } = this._map.getStyle()
+      // eslint-disable-next-line no-restricted-syntax
+      for (const layer of layers) {
+        if (layer.type === 'symbol' && layer.layout['text-field']) this._map.removeLayer(layer.id)
+      }
+      this._map.addLayer({
+        id: '3d-buildings',
+        source: 'composite',
+        'source-layer': 'building',
+        filter: ['==', 'extrude', 'true'],
+        type: 'fill-extrusion',
+        minzoom: 12,
+        paint: {
+          'fill-extrusion-color': '#aaa',
+          // use an 'interpolate' expression to add a smooth transition effect to the
+          // buildings as the user zooms in
+          'fill-extrusion-height': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            15,
+            0,
+            15.05,
+            ['get', 'height']
+          ],
+          'fill-extrusion-base': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            15,
+            0,
+            15.05,
+            ['get', 'min_height']
+          ],
+          'fill-extrusion-opacity': 0.6
+        }
       })
     },
     click2Play (item) {
@@ -124,9 +160,20 @@ $themeColor: #007aff;
     width: 100%;
     animation-fill-mode: both;
     -webkit-animation-fill-mode: both;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+      rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     background-image: linear-gradient(350deg, #5efce8 10%, #736efe);
-    clip-path: polygon(0 0,100% 0,100% calc(100% - 20px),75% calc(100% - 20px),72.5% 100%,27.5% 100%,25% calc(100% - 20px),0 calc(100% - 20px),0 0);
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% calc(100% - 20px),
+      75% calc(100% - 20px),
+      72.5% 100%,
+      27.5% 100%,
+      25% calc(100% - 20px),
+      0 calc(100% - 20px),
+      0 0
+    );
     .title-text {
       color: #fff;
       font-weight: 600;
@@ -179,14 +226,27 @@ $themeColor: #007aff;
     outline: none;
   }
 
-  .datav-card-001{
+  .datav-card-001 {
     margin-top: 50px;
     color: #fff;
     width: 320px;
     padding: 14px;
     border-right: 1px solid #8ae66e;
     background-image: linear-gradient(350deg, #2af598 0%, #009efd 100%);
-    clip-path: polygon(0 25px,26px 0,calc(60% - 25px) 0,60% 25px,100% 25px,100% calc(100% - 10px),calc(100% - 15px) calc(100% - 10px),calc(80% - 10px) calc(100% - 10px),calc(80% - 15px) 100%,80px 100%,65px calc(100% - 15px),0 calc(100% - 15px));
+    clip-path: polygon(
+      0 25px,
+      26px 0,
+      calc(60% - 25px) 0,
+      60% 25px,
+      100% 25px,
+      100% calc(100% - 10px),
+      calc(100% - 15px) calc(100% - 10px),
+      calc(80% - 10px) calc(100% - 10px),
+      calc(80% - 15px) 100%,
+      80px 100%,
+      65px calc(100% - 15px),
+      0 calc(100% - 15px)
+    );
   }
 }
 </style>

@@ -50,7 +50,7 @@ const DatavWindow = function ({ store, router, opt = {} }) {
         //  'url:http://258754.cn/2020/ehs/component/chart.vue'
       },
       beforeDestroy () {
-        console.log('beforeDestroy')
+        // console.log('beforeDestroy')
       },
       methods: {
         closed () {
@@ -65,7 +65,12 @@ const DatavWindow = function ({ store, router, opt = {} }) {
         return h(
           'div',
           {
-            class: ['datav-window', 'fadeOut-aside', 'ground_glass', { [type]: this.show }],
+            class: [
+              'datav-window',
+              'fadeOut-aside',
+              'ground_glass',
+              { [type]: this.show }
+            ],
             style: {
               [type]: '10px',
               ...commonStyle[type],
@@ -88,6 +93,12 @@ const DatavWindow = function ({ store, router, opt = {} }) {
             ),
             this.show ? h('contentMain') : null,
             h('chart', {
+              attrs: {
+                id: 'foo'
+              },
+              props: {
+                ad: '北京市市辖区房山区南窖乡'
+              },
               style: {
                 height: '220px'
               }

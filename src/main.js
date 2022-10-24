@@ -18,6 +18,7 @@ import DatavWindow from '@/plugin/DatavWindow'
 
 Vue.use(lib, { router, store })
 
+window.Vue = Vue
 // Vue.use(DatavWindow, { router, store })
 
 Vue.prototype.$DatavWindow = DatavWindow({ router, store })

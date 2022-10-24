@@ -45,7 +45,9 @@ const DatavWindow = function ({ store, router, opt = {} }) {
         }
       },
       components: {
-        contentMain: content
+        contentMain: content,
+        chart: window.httpVueLoader('vue/shiliangl.vue')
+        //  'url:http://258754.cn/2020/ehs/component/chart.vue'
       },
       beforeDestroy () {
         console.log('beforeDestroy')
@@ -84,7 +86,12 @@ const DatavWindow = function ({ store, router, opt = {} }) {
               },
               ['关闭', this.show]
             ),
-            this.show ? h('contentMain') : null
+            this.show ? h('contentMain') : null,
+            h('chart', {
+              style: {
+                height: '220px'
+              }
+            })
           ]
         )
       }

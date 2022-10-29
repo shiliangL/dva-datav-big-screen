@@ -14,18 +14,15 @@ import 'normalize.css/normalize.css'
 
 // 使用组件、原型工具函数、插件、等
 import lib from '@/plugin/index'
-import DatavWindow from '@/plugin/DatavWindow'
+import DvaWinManager from '@/plugin/DvaWinManager'
 
 Vue.use(lib, { router, store })
-
-// Vue.use(DatavWindow, { router, store })
-
-Vue.prototype.$DatavWindow = DatavWindow({ router, store })
+window.$DvaWinManager = Vue.prototype.$DvaWinManager = new DvaWinManager({ router, store })
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App)
 }).$mount('#app')

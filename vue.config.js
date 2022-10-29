@@ -11,6 +11,7 @@ const resolve = (src) => path.resolve(__dirname, src)
 // const defaultConfig = require('./src/config.js')
 
 module.exports = defineConfig({
+  runtimeCompiler: true,
   outputDir: 'dist', // 打包生成文件夹
   publicPath: '', // 打包发布路径
   transpileDependencies: true,

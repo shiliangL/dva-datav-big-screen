@@ -46,15 +46,18 @@ export default {
   methods: {
     click2show (item, index) {
       this.currentActive = index
-      this.$DatavWindow({
+      // if (this) return
+      this.$DvaWinManager.openWin({
         type: 'left',
-        styles: {},
-        content: () => import('@/views/aside/smartCityLeftLv1.vue')
+        styles: {
+        },
+        content: () => import('@/views/aside/smartCityLeftLv2.vue')
       })
-      this.$DatavWindow({
+      this.$DvaWinManager.openWin({
         type: 'right',
-        styles: {},
-        content: () => import('@/views/aside/smartCityLeftLv1.vue')
+        styles: {
+        },
+        content: () => import('@/views/aside/smartCityLeftLv2.vue')
       })
       // setTimeout(() => {
       //   win && win.closed && win.closed()
@@ -95,6 +98,7 @@ $themeColor: #007aff;
     }
 
     &.active {
+      transform: all 0.35s;
       &::after {
         z-index: 1;
         position: absolute;
@@ -103,7 +107,7 @@ $themeColor: #007aff;
         height: 100%;
         top: -50%;
         left: -50%;
-
+        transform: all 0.35s;
         transform-origin: bottom right;
         background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
         animation: animate 8s linear infinite;
@@ -118,7 +122,7 @@ $themeColor: #007aff;
         height: 100%;
         top: -50%;
         left: -50%;
-
+        transform: all 0.35s;
         transform-origin: bottom right;
         background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
         animation: animate 8s linear infinite;

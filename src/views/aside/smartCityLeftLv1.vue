@@ -16,10 +16,7 @@ export default {
     }
   },
   mounted () {
-    setTimeout(() => {
-      console.log(this)
-      // this.$parent && this.$parent.closed && this.$parent.closed()
-    }, 2500)
+
   },
   methods: {
 

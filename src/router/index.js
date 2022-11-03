@@ -9,6 +9,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import generatePage from '@/pages/index'
+
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
   return originalPush.call(this, location).catch(err => err)
@@ -22,8 +24,11 @@ export const routes = [
     name: 'Home',
     description: '项目主页',
     component: () => import('@/views/home/datav-layout')
-  }
+  },
+  ...generatePage
 ]
+
+console.log(routes, '=路由信息=')
 
 const router = new VueRouter({
   routes

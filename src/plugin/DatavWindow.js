@@ -47,7 +47,6 @@ const DatavWindow = function ({ store, router, opt = {} }) {
       components: {
         contentMain: content,
         chart: window.httpVueLoader('vue/shiliangl.vue')
-        //  'url:http://258754.cn/2020/ehs/component/chart.vue'
       },
       beforeDestroy () {
         // console.log('beforeDestroy')

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1> TESTxx </h1>
+</body>
+
+<script>
+
+    const eventOpt = {
+        fn() {
+
+        },
+        // 事件中心
+        bus: {
+
+        },
+        on(event, fn) {
+            // 事件中心中添加 关系这个事件的目标
+            if (!this.bus[event]) this.bus[event] = []
+            this.bus[event].push(fn)
+            return this
+        },
+        off() {
+
+        },
+        emit() {
+            // shift 删除数据第一个元素。影响原数组。并返回删除后的元素
+            let event = [].shift.call(arguments)
+            const fns = [...this.bus[event]];
+            // 如果没有该事件 返回false
+            if (!fns.length) return false
+            // 如果存在则挨个通知
+            fns.forEach(fn => fn.apply(this, arguments))
+            return this
+        }
+    }
+
+    // 订阅
+    eventOpt.on('todo', (e) => {
+        console.log(this, e, '===x===');
+    })
+    eventOpt.on('todo', (e) => {
+        console.log(this, e, '===x===');
+    })
+
+    // 发布
+    eventOpt.emit('todo', { data: '22' }, { name: '33' })
+
+    function fn() {
+
+    }
+
+
+    function createEventBus(vm = {}) {
+        // 事件中心
+        vm._events = {}
+        // 监听
+        vm.$on = function (event, fn) {
+            const _this = this;
+            if (Array.isArray(event)) {
+                for (let index = 0; index < event.length; index++) {
+                    _this.$on(event[index], fn)
+                }
+            } else {
+                // _this._events[event] || (_this._events[event] = []).push(fn)
+                if (!_this._events[event]) _this._events[event] = []
+                _this._events[event].push(fn)
+            }
+            return _this
+        }
+        // 监听一次
+        vm.$once = function (event, fn) {
+
+        }
+        // 解绑
+        vm.$off = function (event, fn) {
+
+        }
+        // 触发
+        vm.$emit = function () {
+            const _this = this;
+            const event = [].shift.call(arguments)
+            if (!event || !_this._events[event] || !_this._events[event].length) return false;
+            const fns = this._events[event]
+            for (let index = 0; index < fns.length; index++) {
+                fns[index].apply(_this, arguments)
+            }
+            return _this
+        }
+        return vm
+    }
+
+    const bus = createEventBus()
+    console.log(bus, '===bus===');
+
+    // 订阅
+    bus.$on('bus-todo', function () {
+        console.log(this, [...arguments], '===11===');
+    })
+
+    bus.$on('bus-todo', function () {
+        console.log(this, [...arguments], '===33===');
+    })
+
+    bus.$on('bus-todo', function () {
+        console.log(this, [...arguments], '===33===');
+    })
+
+    bus.$emit('bus-todo', { name: '11' }, { title: '22' })
+
+
+</script>
+    
+
+</html>

@@ -12,6 +12,8 @@ import store from './store'
 import './styles/index.scss'
 import 'normalize.css/normalize.css'
 
+import './components/register'
+
 // 使用组件、原型工具函数、插件、等
 import lib from '@/plugin/index'
 import DvaWinManager from '@/plugin/DvaWinManager'

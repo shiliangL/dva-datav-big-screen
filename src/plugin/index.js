@@ -7,7 +7,6 @@
  * @Description:
  */
 // 方便开发调试先祖册全局组件
-import components from '@/components'
 import { randomNumber, deepMerge } from '@/utils/index'
 import directives from '@/directives/styles'
 // console.log(dva, '=Dva组件库=')
@@ -48,8 +47,6 @@ export default (Vue, { store = {}, router = {} }) => {
   Vue.prototype.$generateDatavRadiusChartOptionPro = generateDatavRadiusChartOptionPro
   // 封装请求接口可以拦截JSON请求错误
   Vue.prototype.$fetchJson = fetchJson
-  // 组件
-  Vue.use(components)
   // 过滤器
   Object.keys(directives).forEach(key => {
     Vue.directive(key, directives[key])

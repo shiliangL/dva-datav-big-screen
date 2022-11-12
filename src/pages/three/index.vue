@@ -76,8 +76,10 @@ export default {
       const controls = new OrbitControls(camera, renderer.domElement)
 
       // scene.add(cube)
-      camera.position.z = 5
-      camera.lookAt(0, 20, 10)
+      camera.position.z = 2
+      camera.position.x = 2
+      camera.position.y = 4
+      // camera.lookAt(0, 20, 10)
 
       const gltfLoader = new GLTFLoader()
 

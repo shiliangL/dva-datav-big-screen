@@ -76,13 +76,14 @@ export default {
       const controls = new OrbitControls(camera, renderer.domElement)
 
       // scene.add(cube)
-      camera.position.z = 2
-      camera.position.x = 2
-      camera.position.y = 4
+      // camera.position.z = 2
+      // camera.position.x = 2
+      // camera.position.y = 4
+
+      camera.position.set(1, 2, 2)
       // camera.lookAt(0, 20, 10)
 
       const gltfLoader = new GLTFLoader()
-
       const gltf = await gltfLoader.loadAsync('model/mclaren/scene.gltf')
       gltf.scene.traverse(n => {
         console.log(n, '=x=')

@@ -3,7 +3,7 @@
  * @Date: 2022-08-09 14:07:47
  * @LastEditTime: 2022-08-10 21:14:56
  * @LastEditors: Do not edit
- * @Description: 演示项目应用场景
+ * @Description: 文件夹名字注册路由
  */
 
 const pages = {}
@@ -16,10 +16,10 @@ files.keys().forEach(key => {
 Object.keys(pages).forEach(item => {
   generatePage.push({
     component: pages[item],
+    keyName: item.replace('/index', ''),
     name: pages[item].name || item.replace('/index', ''),
     title: pages[item].title || item.replace('/index', ''),
-    keyName: item.replace('/index', ''),
-    path: pages[item].path ? pages[item].path : `/${item}`,
+    path: pages[item].path ? pages[item].path : `/${item}`.replace('/index', ''),
     description: pages[item].description
   })
 })

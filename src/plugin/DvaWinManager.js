@@ -11,9 +11,9 @@ const instance = {
 // 样式
 const sidebar = {
   zIndex: 200,
-  top: '10%',
-  bottom: '10%',
-  width: '320px',
+  top: '6%',
+  bottom: '6%',
+  width: '22%',
   position: 'fixed'
 }
 // eslint-disable-next-line no-unused-vars

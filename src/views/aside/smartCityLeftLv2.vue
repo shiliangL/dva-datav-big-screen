@@ -26,7 +26,7 @@ export default {
 <style lang="scss" scoped>
 .base-panel {
   height: 300px;
-  width: 500px;
+  width: 100%;
   position: relative;
 
   --bgColor: linear-gradient(135deg, #5efce8 10%, #736efe 100%);

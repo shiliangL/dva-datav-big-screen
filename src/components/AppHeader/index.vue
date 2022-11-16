@@ -3,8 +3,8 @@ export default {
   name: 'AppHeader',
   render (h) {
     return h('div', { class: 'header' }, [
-      h('div', { class: 'title' }, [
-        '智慧城市运行管理中心'
+      h('div', { class: 'title icon-datav' }, [
+        '孪生智慧城市平台'
       ]),
       h('div', { class: 'left-bg' }, [
 

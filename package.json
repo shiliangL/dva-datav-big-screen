@@ -12,6 +12,7 @@
     "clean:all": "rimraf node_modules && rimraf dist && rimraf lib"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "TagCloud": "^2.2.0",
     "clipboard": "^2.0.4",
     "core-js": "^3.8.3",

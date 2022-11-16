@@ -1,9 +1,9 @@
 <script>
 
 import {
-  BoxGeometry,
   Mesh,
-  MeshBasicMaterial,
+  // BoxGeometry,
+  // MeshBasicMaterial,
   PerspectiveCamera,
   Scene,
   GridHelper,
@@ -44,9 +44,9 @@ export default {
       const texture = loader.load(imgs)
       scene.background = texture
 
-      const geometry = new BoxGeometry(1, 1, 1)
-      const material = new MeshBasicMaterial({ color: 0x00ff00 })
-      const cube = new Mesh(geometry, material)
+      // const geometry = new BoxGeometry(1, 1, 1)
+      // const material = new MeshBasicMaterial({ color: 0x00ff00 })
+      // const cube = new Mesh(geometry, material)
 
       const ambient = new AmbientLight(0x444444)
       scene.add(ambient)// 环境光对象添加到scene场景中
@@ -85,19 +85,112 @@ export default {
 
       const gltfLoader = new GLTFLoader()
       const gltf = await gltfLoader.loadAsync('model/mclaren/scene.gltf')
-      gltf.scene.traverse(n => {
-        console.log(n, '=x=')
+      gltf.scene.traverse((child) => {
+        child.name = 'main_mode'
       })
+      // gltf.scene.traverse(n => {
+      //   // console.log(n, '=x=')
+      // })
+      console.log(gltf, '=gltf=')
       scene.add(gltf.scene)
+
+      // 监听键盘是否按下
+      let keyCodeW = false
+      let keyCodeS = false
+      let keyCodeA = false
+      let keyCodeD = false
+      document.addEventListener(
+        'keydown',
+        (e) => {
+          const ev = e || window.event
+          switch (ev.keyCode) {
+            case 87:
+              keyCodeW = true
+              break
+            case 83:
+              keyCodeS = true
+              break
+            case 65:
+              keyCodeA = true
+              break
+            case 68:
+              keyCodeD = true
+              break
+            case 75:
+              break
+            default:
+              break
+          }
+        },
+        false
+      )
+      document.addEventListener(
+        'keyup',
+        (e) => {
+          const ev = e || window.event
+          switch (ev.keyCode) {
+            case 87:
+              keyCodeW = false
+              break
+            case 83:
+              keyCodeS = false
+              break
+            case 65:
+              keyCodeA = false
+              break
+            case 68:
+              keyCodeD = false
+              break
+            default:
+              break
+          }
+        },
+        false
+      )
+
+      // 控制 移动
+      function onCodeMove (mesh) {
+        if (keyCodeW) {
+          mesh.position.x += 0.2
+          // camera.position.x += 0.2
+          mesh.rotation.y = Math.PI * 0.5
+        }
+        if (keyCodeA) {
+          mesh.position.z -= 0.2
+          // camera.position.z -= 0.2
+          mesh.rotation.y = Math.PI
+        }
+        if (keyCodeS) {
+          mesh.position.x -= 0.2
+          // camera.position.x -= 0.2
+          mesh.rotation.y = Math.PI * 1.5
+        }
+        if (keyCodeD) {
+          mesh.position.z += 0.2
+          // camera.position.z += 0.2
+          mesh.rotation.y = Math.PI * 2
+        }
+
+        if (keyCodeW && keyCodeD) {
+          mesh.rotation.y = Math.PI * 0.25
+        }
+        if (keyCodeW && keyCodeA) {
+          mesh.rotation.y = Math.PI * 0.75
+        }
+        if (keyCodeA && keyCodeS) {
+          mesh.rotation.y = Math.PI * 1.25
+        }
+        if (keyCodeS && keyCodeD) {
+          mesh.rotation.y = Math.PI * 1.75
+        }
+      }
+
+      const objectCar = scene.getObjectByName('main_mode')
 
       function animate () {
         requestAnimationFrame(animate)
-
-        cube.rotation.x += 0.01
-        cube.rotation.y += 0.01
-
         controls.update()
-
+        onCodeMove(objectCar)
         renderer.render(scene, camera)
       };
 

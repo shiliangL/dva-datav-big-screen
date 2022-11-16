@@ -1,6 +1,7 @@
 <template>
   <div class="smartDatav">
-    <datav-title-bar></datav-title-bar>
+    <AppHeader></AppHeader>
+    <datav-title-bar v-if="0"></datav-title-bar>
     <datav-map-view></datav-map-view>
     <datav-navigation-bar></datav-navigation-bar>
   </div>

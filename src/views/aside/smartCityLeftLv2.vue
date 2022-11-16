@@ -29,7 +29,7 @@ export default {
   width: 500px;
   position: relative;
 
-  --bgColor: #61eeea;
+  --bgColor: linear-gradient(135deg, #5efce8 10%, #736efe 100%);
   --titleBgColor: #61eeea;
 
   --titleHeight: 40px;
@@ -474,7 +474,7 @@ export default {
 }
 .base-panel-title {
   font-size: 18px;
-  background:  var(--titleBgColor);
+  background: var(--titleBgColor);
   background-image: linear-gradient(135deg, #5efce8 10%, #736efe 100%);
   position: absolute;
   padding: 0 15px;

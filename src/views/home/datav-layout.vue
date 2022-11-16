@@ -2,7 +2,8 @@
   <div class="smartDatav">
     <datav-title-bar></datav-title-bar>
     <datav-map-view></datav-map-view>
-    <datav-navigation-bar></datav-navigation-bar>
+    <datav-navigation-bar v-if="0"></datav-navigation-bar>
+    <AppFooter></AppFooter>
   </div>
 </template>
 

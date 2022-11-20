@@ -1,28 +1,23 @@
 import {
   Scene,
   Mesh,
-  Vector3,
-  Color,
-  BufferGeometry,
   WebGLRenderer,
   PerspectiveCamera,
   BoxGeometry,
-  AdditiveBlending,
-  Float32BufferAttribute,
-  ParticleBasicMaterial,
+  TextureLoader,
+  CubeTextureLoader,
   MeshBasicMaterial
 } from 'three'
 
 import { GUI } from 'dat.gui'
 import Stats from 'three/examples/jsm/libs/stats.module'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 class ThreeApp {
-  modelList = []
-
-  stats = new Stats()
-  hasStats = null
-
   gui = null
+  hasStats = null
+  modelList = []
+  stats = new Stats()
 
   constructor ({ canvas, opt = {} }) {
     // 渲染器
@@ -38,7 +33,6 @@ class ThreeApp {
       1, // near 最近可视距离
       1000 // far 最远可视距离
     )
-
     // 初始化
     this.renderInit()
   }
@@ -50,9 +44,12 @@ class ThreeApp {
     this.renderer.setSize(window.innerWidth, window.innerHeight)
     // 更新+渲染到页面
     this.animate()
-
+    // 设置场景背景
+    this.renderBackground()
     // 设置相机位置
     this.camera.position.z = 5
+
+    this.initControls()
 
     // 状态
     if (!this.hasStats) {
@@ -62,6 +59,29 @@ class ThreeApp {
 
     window.addEventListener('resize', () => {
       this.resize()
+    })
+  }
+
+  initControls = () => {
+    //  控制器
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+    this.controls.minDistance = 2
+    this.controls.maxDistance = 20
+    this.controls.enablePan = false
+
+    this.controls.addEventListener('change', this.render)
+  }
+
+  renderBackground = () => {
+    const imgs = [
+      'textures/cube/pisa/px.png',
+      'textures/cube/pisa/nx.png',
+      'textures/cube/pisa/py.png',
+      'textures/cube/pisa/ny.png',
+      'textures/cube/pisa/pz.png',
+      'textures/cube/pisa/nz.png']
+    new CubeTextureLoader().load(imgs, (cubeTexture) => {
+      this.scene.background = cubeTexture
     })
   }
 
@@ -101,6 +121,8 @@ class ThreeApp {
     this.renderer.render(this.scene, this.camera)
 
     this.stats.update()
+
+    // this.controls.update()
   }
 }
 
@@ -116,21 +138,25 @@ class ThreeCube {
   }
 
   constructor () {
+    //  纹理
+    const texture = new TextureLoader().load('textures/crate.gif')
+
     // 几何体
     this.geometry = new BoxGeometry(1, 1, 1)
     // 材质
     this.material = new MeshBasicMaterial({
-      color: '#1677ff',
-      wireframe: true
+      map: texture
+      // color: '#1677ff',
+      // wireframe: true
     })
     // 模型
     this.model = new Mesh(this.geometry, this.material)
   }
 
   animate = () => {
-    this.rotateAnimate(this.model, 'x', 0.01, this.direction, 0, Math.PI * 2)
-    this.rotateAnimate(this.model, 'y', 0.02, this.direction, 0, Math.PI * 2)
-    this.rotateAnimate(this.model, 'z', 0.01, this.direction, 0, Math.PI * 2)
+    this.rotateAnimate(this.model, 'x', 0.001, this.direction, 0, Math.PI * 2)
+    this.rotateAnimate(this.model, 'y', 0.002, this.direction, 0, Math.PI * 2)
+    this.rotateAnimate(this.model, 'z', 0.003, this.direction, 0, Math.PI * 2)
   }
 
   rotateAnimate = (model, para, change, direction, min, max) => {

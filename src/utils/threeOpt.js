@@ -1,9 +1,15 @@
 import {
   Scene,
   Mesh,
+  Vector3,
+  Color,
+  BufferGeometry,
   WebGLRenderer,
   PerspectiveCamera,
   BoxGeometry,
+  AdditiveBlending,
+  Float32BufferAttribute,
+  ParticleBasicMaterial,
   MeshBasicMaterial
 } from 'three'
 
@@ -98,6 +104,10 @@ class ThreeApp {
   }
 }
 
+class SkyApp {
+
+}
+
 class ThreeCube {
   direction = {
     x: true,
@@ -154,4 +164,4 @@ class ThreeCube {
   }
 }
 
-export default { ThreeApp, ThreeCube }
+export default { ThreeApp, SkyApp, ThreeCube }

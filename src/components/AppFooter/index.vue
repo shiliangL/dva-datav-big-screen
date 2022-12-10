@@ -51,13 +51,13 @@ export default {
         type: 'left',
         styles: {
         },
-        content: () => import('@/views/aside/smartCityLeftLv1.vue')
+        content: () => import('@/views/aside/smartCityLeftLv2.vue')
       })
       this.$DvaWinManager.openWin({
         type: 'right',
         styles: {
         },
-        content: () => import('@/views/aside/smartCityLeftLv1.vue')
+        content: () => import('@/views/aside/smartCityLeftLv2.vue')
       })
     }
   },

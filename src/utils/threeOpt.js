@@ -12,6 +12,7 @@ import {
 import { GUI } from 'dat.gui'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 
 class ThreeApp {
   gui = null
@@ -112,6 +113,15 @@ class ThreeApp {
   animate = () => {
     requestAnimationFrame(this.animate)
     this.render()
+  }
+
+  async initGLTFLoader (url) {
+    if (!url) return
+    return new Promise(resolve => {
+      new GLTFLoader().load(url, (gltf) => {
+        resolve({ gltf, app: this })
+      })
+    })
   }
 
   render = () => {

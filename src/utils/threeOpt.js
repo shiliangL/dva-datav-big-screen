@@ -1,6 +1,7 @@
 import {
   Scene,
   Mesh,
+  AxesHelper,
   WebGLRenderer,
   PerspectiveCamera,
   BoxGeometry,
@@ -51,6 +52,7 @@ class ThreeApp {
     this.camera.position.z = 5
 
     this.initControls()
+    this.initAxesHelper()
 
     // 状态
     if (!this.hasStats) {
@@ -61,6 +63,12 @@ class ThreeApp {
     window.addEventListener('resize', () => {
       this.resize()
     })
+  }
+
+  // 初始化工具
+  initAxesHelper = () => {
+    const axesHelper = new AxesHelper(30)
+    this.scene.add(axesHelper)
   }
 
   initControls = () => {
@@ -80,7 +88,8 @@ class ThreeApp {
       'textures/cube/pisa/py.png',
       'textures/cube/pisa/ny.png',
       'textures/cube/pisa/pz.png',
-      'textures/cube/pisa/nz.png']
+      'textures/cube/pisa/nz.png'
+    ]
     new CubeTextureLoader().load(imgs, (cubeTexture) => {
       this.scene.background = cubeTexture
     })

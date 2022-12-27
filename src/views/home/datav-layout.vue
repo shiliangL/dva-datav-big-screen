@@ -4,7 +4,7 @@
     <datav-title-bar v-if="0"></datav-title-bar>
     <datav-map-view></datav-map-view>
     <datav-navigation-bar v-if="0"></datav-navigation-bar>
-    <AppFooter></AppFooter>
+    <AppFooter @select="select"></AppFooter>
   </div>
 </template>
 
@@ -26,7 +26,21 @@ export default {
 
   },
   methods: {
-
+    select (row) {
+      console.log(row)
+      this.$DvaWinManager.openWin({
+        type: 'left',
+        styles: {
+        },
+        content: () => import('@/views/aside/smartCityLeftLv2.vue')
+      })
+      this.$DvaWinManager.openWin({
+        type: 'right',
+        styles: {
+        },
+        content: () => import('@/views/aside/smartCityLeftLv2.vue')
+      })
+    }
   }
 }
 </script>

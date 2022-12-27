@@ -45,20 +45,9 @@ export default {
     console.log(this)
   },
   methods: {
-    linkOnClick (item) {
+    select (item) {
       // this.$router.push(item.path)
-      this.$DvaWinManager.openWin({
-        type: 'left',
-        styles: {
-        },
-        content: () => import('@/views/aside/smartCityLeftLv2.vue')
-      })
-      this.$DvaWinManager.openWin({
-        type: 'right',
-        styles: {
-        },
-        content: () => import('@/views/aside/smartCityLeftLv2.vue')
-      })
+      this.$emit('select', item)
     }
   },
   render (h) {
@@ -68,7 +57,7 @@ export default {
           return h('div', {
             class: 'link',
             on: {
-              click: () => this.linkOnClick(item)
+              click: () => this.select(item)
             }
           }, [
             h('div', { class: 'link-img' }, [
@@ -115,7 +104,7 @@ export default {
   margin: auto;
   z-index: 9;
   @include wHeight(114);
-  background: url('~@/assets/images/link/bottom_bg@2x.png') no-repeat;
+  background: url("~@/assets/images/link/bottom_bg@2x.png") no-repeat;
   background-size: 100% 100%;
 
   .footer_link {

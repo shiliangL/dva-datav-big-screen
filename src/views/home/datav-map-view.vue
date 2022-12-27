@@ -11,78 +11,77 @@ export default {
   },
   methods: {
     initMap () {
-      const { mapboxgl, MapboxLanguage } = window
-      if (!mapboxgl) return
-      mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpbGlhbmdsIiwiYSI6ImNrdG5wbjdjODA1NGkzMW8zZ2w5b2xzNTgifQ.zO_1f362AFeSWsrmE6I-Ww'
-      this._map = new mapboxgl.Map({
-        container: this.$el,
-        style: 'mapbox://styles/mapbox/dark-v10',
-        center: [114.185125079355, 22.6322002129776],
-        zoom: 12,
-        maxzoom: 10,
-        minzoom: 12,
-        pitch: 45
+      const { AMap } = window
+      if (!AMap) return
+      window._VM_AMap = this._map = new AMap.Map('mapboxgl', {
+        zooms: [4, 8],
+        zoom: 4.5,
+        showLabel: false,
+        viewMode: '3D',
+        center: [105.425968, 35.882505],
+        mapStyle: 'amap://styles/45311ae996a8bea0da10ad5151f72979'
       })
-      this._map.on('load', () => {
-        this.init3dLayer()
-        mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js')
-        this._map.addControl(new MapboxLanguage({
-          defaultLanguage: 'zh-Hans'
-        }))
+      this._map.setMapStyle('amap://styles/dark')
+      this.$nextTick().then(() => {
+        this.initLocaView()
       })
     },
-    init3dLayer () {
-      if (!this._map) return
-      const { layers } = this._map.getStyle()
-      for (const layer of layers) {
-        if (layer.type === 'symbol' && layer.layout['text-field']) this._map.removeLayer(layer.id)
-      }
-      this._map.addLayer({
-        id: '3d-buildings',
-        source: 'composite',
-        'source-layer': 'building',
-        filter: ['==', 'extrude', 'true'],
-        type: 'fill-extrusion',
-        minzoom: 12,
-        paint: {
-          'fill-extrusion-color': '#aaa',
-          // use an 'interpolate' expression to add a smooth transition effect to the
-          // buildings as the user zooms in
-          'fill-extrusion-height': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            15,
-            0,
-            15.05,
-            ['get', 'height']
-          ],
-          'fill-extrusion-base': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            15,
-            0,
-            15.05,
-            ['get', 'min_height']
-          ],
-          'fill-extrusion-opacity': 0.6
-        }
+    initLocaView () {
+      const { Loca } = window
+      if (!Loca) return
+      const loca = window._VM_Loca = new Loca.Container({
+        map: this._map,
+        opacity: 1
       })
+      const geo = new Loca.GeoJSONSource({
+        url: 'https://a.amap.com/Loca/static/loca-v2/demos/mock_data/cuisine.json'
+      })
+      const pl = window.pl = new Loca.PointLayer({
+        zIndex: 10,
+        blend: 'lighter'
+      })
+      const style = {
+        radius: 3.5,
+        unit: 'px',
+        color: '#3C1FA8',
+        borderWidth: 0,
+        blurWidth: 3.5
+      }
+      pl.setSource(geo)
+      pl.setStyle(style)
+      loca.add(pl)
+
+      pl.addAnimate({
+        key: 'radius',
+        value: [0, 1],
+        duration: 500,
+        easing: 'Linear',
+        transform: 2000,
+        random: true,
+        delay: 8000,
+        yoyo: true,
+        repeat: 100000
+      })
+      const dat = new Loca.Dat()
+      dat.addLayer(pl)
+
+      setTimeout(() => {
+        loca.clear()
+      }, 12000)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  #mapboxgl {
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    overflow: hidden;
-    position: fixed;
-    background: #060b14;
-  }
+#mapboxgl {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  position: fixed;
+  background: #060b14;
+}
 </style>

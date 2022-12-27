@@ -1,10 +1,18 @@
 <script>
+
+const { logoTitle } = window._datavConfig || {}
+
 export default {
   name: 'AppHeader',
+  data () {
+    return {
+      logoTitle
+    }
+  },
   render (h) {
     return h('div', { class: 'header' }, [
       h('div', { class: 'title icon-datav' }, [
-        '孪生智慧城市平台'
+        this.logoTitle
       ]),
       h('div', { class: 'left-bg' }, [
 

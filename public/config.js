@@ -1,6 +1,6 @@
 window._datavConfig = {
   // 项目配置内容配置
-  logoTitle: "dva-datav数据可视化", // 顶部 LOGO 名称
+  logoTitle: "智慧物联设备云平台", // 顶部 LOGO 名称
   showNavigationTitle: true, // 是否显示导航栏菜单名称
   // 底部导航栏 农业总览、农业视角1、农业视角2、农业视角3
   navigation: [

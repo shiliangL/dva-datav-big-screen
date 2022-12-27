@@ -16,17 +16,18 @@ export default {
       window._VM_AMap = this._map = new AMap.Map('mapboxgl', {
         zooms: [4, 8],
         zoom: 4.5,
+        pitch: 35,
         showLabel: false,
         viewMode: '3D',
         center: [105.425968, 35.882505],
-        mapStyle: 'amap://styles/45311ae996a8bea0da10ad5151f72979'
+        mapStyle: 'amap://styles/dark'
       })
-      this._map.setMapStyle('amap://styles/dark')
+      // this._map.setMapStyle('amap://styles/dark')
       this.$nextTick().then(() => {
-        this.initLocaView()
+        this.initPointLayer()
       })
     },
-    initLocaView () {
+    initPointLayer () {
       const { Loca } = window
       if (!Loca) return
       const loca = window._VM_Loca = new Loca.Container({
@@ -66,7 +67,7 @@ export default {
       dat.addLayer(pl)
 
       setTimeout(() => {
-        loca.clear()
+        // loca.clear()
       }, 12000)
     }
   }

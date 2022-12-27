@@ -7,7 +7,7 @@ export default {
       type: Array,
       default: () => [
         {
-          name: '城市治理 ',
+          name: '设备分布',
           key: 1,
           path: '/about',
           icon: require('@/assets/images/link/navigation2_ICON1_normal@2x.png'),
@@ -25,7 +25,7 @@ export default {
           activeImg: require('@/assets/images/link/btn_style2_choosed@2x.png')
         },
         {
-          name: '交通总览',
+          name: '设备总览',
           key: 3,
           path: '/three',
           icon: require('@/assets/images/link/navigation2_ICON3_normal@2x.png'),

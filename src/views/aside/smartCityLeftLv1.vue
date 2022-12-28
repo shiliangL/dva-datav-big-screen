@@ -1,5 +1,6 @@
 <template>
   <div class="datav-card-001">
+    <DvaCount2 :end="1024"></DvaCount2>
     is a subgenre of science fiction in a dystopian futuristic setting that
     tends to focus on a "combination of lowlife and high tech",
     featuring futuristic technological and scientific achievements,

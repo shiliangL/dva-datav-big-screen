@@ -62,6 +62,7 @@ module.exports = defineConfig({
     config.resolve.alias
       .set('@', resolve('src'))
       .set('@root', resolve(''))
+      .set('dva-datav2', resolve('src/dva-datav2'))
       // .set('dva-datav', 'D:/develop/make-pre-dev/lib')
   }
 })

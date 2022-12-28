@@ -18,6 +18,9 @@ import './components/register'
 import lib from '@/plugin/index'
 import DvaWinManager from '@/plugin/DvaWinManager'
 
+import dvaDatav2 from 'dva-datav2/index'
+Vue.use(dvaDatav2, { router, store })
+
 Vue.use(lib, { router, store })
 window.$DvaWinManager = Vue.prototype.$DvaWinManager = new DvaWinManager({ router, store })
 

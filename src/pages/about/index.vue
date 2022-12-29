@@ -6,6 +6,9 @@
     <div class="box">
       <DvaGridSection />
     </div>
+    <div class="box">
+      <DvaChartPie />
+    </div>
   </div>
 </template>
 
@@ -16,4 +19,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.box{
+  width: 360px;
+  height: 180px;
+}
 </style>

@@ -6,6 +6,7 @@
  * @Description:
  */
 import DvaCount2 from 'dva-datav2/dva-count2'
+import DvaChartPie from 'dva-datav2/dva-chart-pie'
 import DvaGridPanel from 'dva-datav2/dva-grid-panel'
 import DvaCoreChart from 'dva-datav2/dva-core-chart'
 import DvaCapsuleBar from 'dva-datav2/dva-capsule-bar'
@@ -14,6 +15,7 @@ import DvaProgressList from 'dva-datav2/dva-progress-list'
 
 const components = [
   DvaCount2,
+  DvaChartPie,
   DvaCoreChart,
   DvaCapsuleBar,
   DvaProgressList,
@@ -34,6 +36,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
   install,
+  DvaChartPie,
   DvaCount2,
   DvaCoreChart,
   DvaCapsuleBar,

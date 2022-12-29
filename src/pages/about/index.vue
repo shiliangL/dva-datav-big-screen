@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="page">
     关于其他
+    <dva-progress-list />
   </div>
 </template>
 

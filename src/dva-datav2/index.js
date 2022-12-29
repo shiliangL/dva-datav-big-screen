@@ -8,11 +8,13 @@
 import DvaCount2 from 'dva-datav2/dva-count2'
 import DvaCoreChart from 'dva-datav2/dva-core-chart'
 import DvaCapsuleBar from 'dva-datav2/dva-capsule-bar'
+import DvaProgressList from 'dva-datav2/dva-progress-list'
 
 const components = [
   DvaCount2,
   DvaCoreChart,
-  DvaCapsuleBar
+  DvaCapsuleBar,
+  DvaProgressList
 ]
 
 const install = function (Vue, opts = {}) {
@@ -30,5 +32,6 @@ export default {
   install,
   DvaCount2,
   DvaCoreChart,
-  DvaCapsuleBar
+  DvaCapsuleBar,
+  DvaProgressList
 }

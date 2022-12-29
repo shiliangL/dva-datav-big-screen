@@ -9,6 +9,9 @@
     <div class="box">
       <DvaChartPie />
     </div>
+    <div class="box">
+      <DvaChartLine />
+    </div>
   </div>
 </template>
 

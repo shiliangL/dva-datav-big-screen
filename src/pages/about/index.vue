@@ -2,6 +2,10 @@
   <div class="page">
     关于其他
     <dva-progress-list />
+
+    <div class="box">
+      <DvaGridSection />
+    </div>
   </div>
 </template>
 

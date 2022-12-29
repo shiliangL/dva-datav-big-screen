@@ -69,7 +69,6 @@ export default {
   },
   data () {
     return {
-      endNumber: 0,
       initConfig: {
         title: '智能设备总数',
         unit: '个',

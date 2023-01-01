@@ -9,7 +9,7 @@ export default {
         {
           name: '设备分布',
           key: 1,
-          path: '/about',
+          path: '/deviceDistribution',
           icon: require('@/assets/images/link/navigation2_ICON1_normal@2x.png'),
           activeIcon: require('@/assets/images/link/navigation2_ICON1_click@2x.png'),
           img: require('@/assets/images/link/btn_style1@2x.png'),
@@ -18,7 +18,7 @@ export default {
         {
           name: '设备监控',
           key: 2,
-          path: '/datav',
+          path: '/deviceMonitoring',
           icon: require('@/assets/images/link/navigation2_ICON2_normal@2x.png'),
           activeIcon: require('@/assets/images/link/navigation2_ICON2_click@2x.png'),
           img: require('@/assets/images/link/btn_style2@2x.png'),
@@ -27,7 +27,7 @@ export default {
         {
           name: '设备总览',
           key: 3,
-          path: '/three',
+          path: '/deviceOverview',
           icon: require('@/assets/images/link/navigation2_ICON3_normal@2x.png'),
           activeIcon: require('@/assets/images/link/navigation2_ICON3_click@2x.png'),
           img: require('@/assets/images/link/btn_style1@2x.png'),
@@ -36,9 +36,14 @@ export default {
       ]
     }
   },
-  computed: {
-    currentPath () {
-      return this.$route.path
+  // computed: {
+  //   currentPath () {
+  //     return this.$route.path
+  //   }
+  // },
+  data () {
+    return {
+      currentPath: ''
     }
   },
   mounted () {
@@ -47,6 +52,7 @@ export default {
   methods: {
     select (item) {
       // this.$router.push(item.path)
+      this.currentPath = item.path
       this.$emit('select', item)
     }
   },
@@ -55,12 +61,12 @@ export default {
       h('div', { class: ['footer_link'], props: {}, attrs: {} }, [
         this.data.map(item => {
           return h('div', {
-            class: 'link',
+            class: ['link', { isactive: this.currentPath === item.path }],
             on: {
               click: () => this.select(item)
             }
           }, [
-            h('div', { class: 'link-img' }, [
+            h('div', { class: ['link-img'] }, [
               this.currentPath === item.path
                 ? h('transition', {
                   props: {
@@ -81,7 +87,7 @@ export default {
                   h('img', { attrs: { src: item.img } })
                 ])
             ]),
-            h('div', { class: 'link_name' }, [
+            h('div', { class: ['link_name'] }, [
               h('img', { attrs: { src: item.icon } }),
               h('span', item.name)
             ])
@@ -167,9 +173,10 @@ export default {
         }
 
         .link_name {
-          //@include FontSize(18);
+          font-weight: 600;
+          @include FontSize(18);
           @include LetterSpacing(1);
-          // color: #ffdeab;
+          color: rgba(0,244,255,1);
         }
       }
 
@@ -197,41 +204,15 @@ export default {
         @include FontSize(13.33);
         color: #ffffff;
         text-shadow: 0 1.33px 2.67px #000101;
-
         img {
           @include Width(24);
           @include wHeight(24);
           @include MarginRight(5.5);
         }
-      }
-
-      .toplinks {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-
-        .toplink {
-          @include Width(140);
-          @include wHeight(40);
-          @include Margin(0, 20, 0, 20);
+        &.isactive {
           @include FontSize(18);
-          color: #ffffff98;
-          display: flex;
-          font-family: Oppo;
-          justify-content: center;
-          align-items: center;
-          background-size: 100% 100%;
-          &.toplink_active {
-            //background: url("~@/assets/images/基础/header/btn_当前选中@2x.png") no-repeat center/cover;
-            background-size: 100% 100%;
-            color: #ffdeab;
-            .svg_left {
-              // font-size: 3000px;
-              //color: #ffffff;
-              //transform: scale(5);
-            }
-          }
+          @include LetterSpacing(1);
+          color: #ffdeab;
         }
       }
     }

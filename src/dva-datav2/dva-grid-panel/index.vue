@@ -53,6 +53,7 @@ export default {
   width: 100%;
   height: 100%;
   display: grid;
+  align-items: center;
   box-sizing: border-box;
   grid-gap: var(--dva_grid_gap);
   grid-template-columns: repeat(var(--dva_column_num), 1fr);

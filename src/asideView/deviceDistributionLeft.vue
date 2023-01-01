@@ -196,7 +196,7 @@ export default {
           data: ['注册总量', '安装总量']
         },
         grid: {
-          top: '8%',
+          top: '16%',
           left: '2%',
           right: '2%',
           bottom: '2%',
@@ -249,7 +249,7 @@ export default {
             symbolSize: 12,
             lineStyle: {
               normal: {
-                color: '#00b3f4',
+                color: '#00fcae',
                 shadowColor: 'rgba(0, 0, 0, .3)',
                 shadowBlur: 0,
                 shadowOffsetY: 5,
@@ -261,11 +261,11 @@ export default {
               position: 'top',
               fontSize: 14,
               textStyle: {
-                color: '#00b3f4'
+                color: '#00fcae'
               }
             },
             itemStyle: {
-              color: '#00b3f4',
+              color: '#00fcae',
               borderColor: '#fff',
               borderWidth: 0,
               shadowColor: 'rgba(0, 0, 0, .3)',

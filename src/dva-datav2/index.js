@@ -5,6 +5,7 @@
  * @LastEditors: Do not edit
  * @Description:
  */
+import DvaSwiper from 'dva-datav2/dva-swiper'
 import DvaCount2 from 'dva-datav2/dva-count2'
 import DvaTitleBar from 'dva-datav2/dva-title-bar'
 import DvaChartPie from 'dva-datav2/dva-chart-pie'
@@ -18,6 +19,7 @@ import DvaProgressList from 'dva-datav2/dva-progress-list'
 
 const components = [
   DvaCount2,
+  DvaSwiper,
   DvaTitleBar,
   DvaChartPie,
   DvaChartBar,
@@ -42,6 +44,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
   install,
+  DvaSwiper,
   DvaChartPie,
   DvaTitleBar,
   DvaChartBar,

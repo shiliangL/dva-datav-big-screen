@@ -78,6 +78,7 @@ class DvaWinManager {
               'datav-window',
               'fadeOut-aside',
               'ground_glass',
+              'scroll_bar',
               { [type]: this.show }
             ],
             on: {},

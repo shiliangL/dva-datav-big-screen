@@ -62,7 +62,7 @@ export default {
       // setTimeout(() => {
       //   win && win.closed && win.closed()
       //   console.log(win)
-      // }, 2000)
+      // }, 3200)
     }
   }
 }

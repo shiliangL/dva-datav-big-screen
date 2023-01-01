@@ -324,7 +324,7 @@ export default {
               h('div', { class: 'desc-item-value' }, [
                 h('dva-count2', { class: 'desc-item-value-count2', props: { end: item.value } }),
                 this.isUnit
-                  ? h('span', { class: 'desc-item-value-count2' }, item.unit)
+                  ? h('span', { class: 'desc-item-value-unit' }, item.unit)
                   : null
               ])
             ])
@@ -490,6 +490,15 @@ export default {
       .desc-item-value-count2 {
         padding: 0 4px;
         color: var(--numberColor);
+      }
+      .desc-item-value-unit{
+        font-size: 12px;
+        padding-right:4px;
+        color: var(--numberColor);
+      }
+      .desc-item-value {
+        display: flex;
+        align-items: baseline;
       }
     }
   }

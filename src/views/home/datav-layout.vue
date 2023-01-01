@@ -45,18 +45,18 @@ export default {
           })
           break
         case 2:
-          // 设备概况
+          // 设备监控
           this.$DvaWinManager.openWin({
             type: 'left',
             styles: {
             },
-            content: () => import('@/asideView/deviceOverviewLeft.vue')
+            content: () => import('@/asideView/deviceMonitoringLeft.vue')
           })
           this.$DvaWinManager.openWin({
             type: 'right',
             styles: {
             },
-            content: () => import('@/asideView/deviceOverviewRight.vue')
+            content: () => import('@/asideView/deviceMonitoringRight.vue')
           })
           break
         case 3:

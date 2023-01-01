@@ -31,11 +31,12 @@
       </div>
     </div>
     <div class="datav-aside-item">
-      <DvaTitleBar title="设备增长趋势" />
+      <DvaTitleBar title="设备增长统计" />
       <div class="content">
         <dva-core-chart
           style="height:180px"
           :option="lineOption"
+          @ready="lineReady"
         />
       </div>
     </div>
@@ -172,7 +173,15 @@ export default {
       },
       lineOption: {
         tooltip: {
-          trigger: 'axis'
+          show: true,
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow',
+            label: {
+              show: true,
+              backgroundColor: '#6a7985'
+            }
+          }
         },
         legend: {
           top: 0,
@@ -188,8 +197,8 @@ export default {
         },
         grid: {
           top: '8%',
-          left: '5%',
-          right: '5%',
+          left: '2%',
+          right: '2%',
           bottom: '2%',
           containLabel: true
         },
@@ -205,7 +214,7 @@ export default {
             show: false
           },
           boundaryGap: true,
-          data: new Array(6).fill(0).map((value, index) => (2018 + index))
+          data: new Array(6).fill(0).map((value, index) => (2017 + index))
         }],
         yAxis: [{
           type: 'value',
@@ -234,7 +243,7 @@ export default {
           {
             name: '注册总量',
             type: 'line',
-            smooth: true, // 是否平滑
+            smooth: true,
             showAllSymbol: true,
             symbol: 'circle',
             symbolSize: 12,
@@ -496,12 +505,13 @@ export default {
     console.log('b-name', b.map(i => i.name))
   },
   beforeDestroy () {
-    clearInterval(this._setInterval)
+    clearInterval(this._setInterval1)
+    clearInterval(this._setInterval2)
   },
   methods: {
     barReady (chart) {
       const _this = this
-      clearInterval(this._setInterval)
+      clearInterval(this._setInterval1)
       function update () {
         const data = _this.barOption.series[0].data
         for (let i = 0; i < data.length; ++i) {
@@ -511,9 +521,22 @@ export default {
           series: _this.barOption.series
         })
       }
-      this._setInterval = setInterval(() => {
+      this._setInterval1 = setInterval(() => {
         update()
       }, 5200)
+    },
+    lineReady (chart) {
+      let len = 0
+      clearInterval(this._setInterval2)
+      this._setInterval2 = setInterval(() => {
+        if (len === 6) len = 0
+        chart.dispatchAction({
+          type: 'showTip',
+          seriesIndex: 0,
+          dataIndex: len
+        })
+        len++
+      }, 3200)
     }
   }
 }

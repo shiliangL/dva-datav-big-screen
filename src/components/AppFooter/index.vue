@@ -16,7 +16,7 @@ export default {
           activeImg: require('@/assets/images/link/btn_style1_choosed@2x.png')
         },
         {
-          name: '设备概览',
+          name: '设备监控',
           key: 2,
           path: '/datav',
           icon: require('@/assets/images/link/navigation2_ICON2_normal@2x.png'),
@@ -95,6 +95,7 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
+  user-select: none;
   position: absolute;
   @include Bottom(15);
   width: 100%;

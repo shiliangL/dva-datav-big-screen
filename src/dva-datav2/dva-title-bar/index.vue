@@ -30,7 +30,7 @@ export default {
 .dva-title-bar {
   @include hHeight(50);
   @include FontSize(28);
-  @include Padding(0, 0, 0, 54);
+  @include Padding(0, 0, 0, 58);
   display: flex;
   align-items: center;
   justify-content: space-between;

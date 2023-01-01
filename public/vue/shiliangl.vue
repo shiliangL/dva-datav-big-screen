@@ -22,7 +22,7 @@ module.exports = {
     setTimeout(() => {
       console.error(this, '=x=');
       // this.$parent.show = false;
-    }, 2000)
+    }, 3200)
   },
   methods: {
 

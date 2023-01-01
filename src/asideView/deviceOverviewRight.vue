@@ -1,7 +1,7 @@
 <template>
   <div class="datav-aside">
     <div class="datav-aside-item">
-      <DvaTitleBar title="设备在线情况" />
+      <DvaTitleBar title="设备销售情况" />
       <div class="content">
         <dva-capsule-bar
           :config="item"
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="datav-aside-item">
-      <DvaTitleBar title="设备增长趋势" />
+      <DvaTitleBar title="设备销售趋势" />
       <div class="content">
         <dva-core-chart
           style="height:180px"
@@ -30,9 +30,12 @@
       </div>
     </div>
     <div class="datav-aside-item">
-      <DvaTitleBar title="设备增长趋势" />
+      <DvaTitleBar title="设备销售区域" />
       <div class="content">
-        <DvaChartPie style="height:180px"></DvaChartPie>
+        <DvaChartPie
+        isUnit
+        :chartData="chartData"
+        style="height:180px"></DvaChartPie>
       </div>
     </div>
   </div>
@@ -54,17 +57,23 @@ export default {
       ],
       capsuleList: [
         {
-          title: '设备总数',
+          title: '设备销售总数',
           unit: '个',
           list: [{
-            title: '在线个数',
+            title: '物联设备',
             value: 24523,
             unit: '个',
             color: 'linear-gradient(-90deg, #5071FF, #21CDFF)'
           },
           {
-            title: '离线个数',
-            value: 1033,
+            title: '远程设备',
+            value: 14566,
+            unit: '个',
+            color: 'linear-gradient(-90deg, #70ffac, #00a2ff)'
+          },
+          {
+            title: '普通设备',
+            value: 8233,
             unit: '个',
             color: 'linear-gradient(269deg, #fadb4d, #fff2b7)'
           }
@@ -72,11 +81,11 @@ export default {
         }
       ],
       chartData: [
-        { name: '温度异常', value: 1612, unit: '项' },
-        { name: '噪音警告', value: 1116, unit: '项' },
-        { name: '气味报警', value: 912, unit: '项' },
-        { name: '远程异常', value: 526, unit: '项' },
-        { name: '其他报警', value: 328, unit: '项' }
+        { name: '广东周边区域', value: 6612, unit: '单' },
+        { name: '云南周边区域', value: 5116, unit: '单' },
+        { name: '上海周边区域', value: 4212, unit: '单' },
+        { name: '江苏周边区域', value: 3526, unit: '单' },
+        { name: '浙江周边区域', value: 2328, unit: '单' }
       ],
       progressData: [
         { icon: 'icon-yijiankaiguan iconfont dva-icon', name: '物联设备', value: 8320, unit: '单' },
@@ -159,7 +168,7 @@ export default {
         }],
         series: [
           {
-            name: '设备能耗',
+            name: '设备销售趋势',
             type: 'bar',
             label: {
               show: true,

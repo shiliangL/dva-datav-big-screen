@@ -1,7 +1,7 @@
 <template>
   <div class="datav-aside">
     <div class="datav-aside-item">
-      <DvaTitleBar title="设备异常情况" />
+      <DvaTitleBar title="设备基本概况" />
       <div class="content">
         <dva-grid-section
           :gap="10"
@@ -10,17 +10,17 @@
       </div>
     </div>
     <div class="datav-aside-item">
-      <DvaTitleBar title="设备产能比对" />
+      <DvaTitleBar title="设备产能趋势统计" />
       <div class="content">
         <dva-core-chart
           style="height:190px"
-          :option="lineOption2"
-          @ready="lineReady2"
+          :option="lineOption1"
+          @ready="lineReady1"
         />
       </div>
     </div>
     <div class="datav-aside-item">
-      <DvaTitleBar title="设备增长趋势" />
+      <DvaTitleBar title="设备分类统计" />
       <div class="content">
         <DvaChartPie
           isUnit
@@ -60,13 +60,13 @@ export default {
         { text: '待处理异常数', num: 230, unit: '项', icon: 'icon-renwujincheng' }
       ],
       chartData: [
-        { name: '设备异常1', value: 1882, unit: '项' },
-        { name: '设备异常2', value: 1662, unit: '项' },
-        { name: '设备异常3', value: 1612, unit: '项' },
-        { name: '设备异常4', value: 1526, unit: '项' },
-        { name: '设备异常5', value: 1328, unit: '项' }
+        { name: '物联设备', value: 6882, unit: '项' },
+        { name: '温控设备', value: 5662, unit: '项' },
+        { name: '烟感设备', value: 4612, unit: '项' },
+        { name: '红外设备', value: 3533, unit: '项' },
+        { name: '远程交互', value: 2321, unit: '项' }
       ],
-      lineOption: {
+      lineOption1: {
         backgroundColor: 'transparent',
         grid: {
           top: '4%',
@@ -139,7 +139,7 @@ export default {
         }],
         series: [
           {
-            name: '订单量',
+            name: '设备产能趋势统计',
             type: 'line',
             symbolSize: 10,
             symbol: 'circle',

@@ -30,7 +30,7 @@ export default {
           data: ['注册总量', '安装总量']
         },
         grid: {
-          top: '10%',
+          top: '8%',
           left: '5%',
           right: '5%',
           bottom: '2%',
@@ -47,7 +47,7 @@ export default {
           splitLine: {
             show: false
           },
-          boundaryGap: false,
+          boundaryGap: true,
           data: new Array(6).fill(0).map((value, index) => (2018 + index))
         }],
         yAxis: [{
@@ -91,8 +91,9 @@ export default {
               }
             },
             label: {
-              show: true,
+              show: false,
               position: 'top',
+              fontSize: 14,
               textStyle: {
                 color: '#00b3f4'
               }
@@ -100,7 +101,7 @@ export default {
             itemStyle: {
               color: '#00b3f4',
               borderColor: '#fff',
-              borderWidth: 2,
+              borderWidth: 0,
               shadowColor: 'rgba(0, 0, 0, .3)',
               shadowBlur: 0,
               shadowOffsetY: 2,
@@ -121,11 +122,12 @@ export default {
                 shadowBlur: 20
               }
             },
-            data: [102.84, 205.97, 332.79, 381.55, 398.35, 414.02]
+            data: [393, 438, 485, 631, 689, 824, 987]
           },
           {
             name: '安装总量',
-            type: 'line',
+            type: 'bar',
+            barWidth: 22,
             smooth: true, // 是否平滑
             showAllSymbol: true,
             symbol: 'circle',
@@ -141,15 +143,32 @@ export default {
             },
             label: {
               show: true,
+              fontSize: 14,
               position: 'top',
               textStyle: {
-                color: '#00ca95'
+                color: '#fff'
               }
             },
             itemStyle: {
-              color: '#00ca95',
+              // color: '#00ca95',
+              color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                  offset: 0,
+                  color: 'rgba(0,244,255,1)'
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(0,77,167,1)'
+                }
+                ]
+              },
+              borderWidth: 0,
               borderColor: '#fff',
-              borderWidth: 2,
               shadowColor: 'rgba(0, 0, 0, .3)',
               shadowBlur: 0,
               shadowOffsetY: 2,
@@ -170,7 +189,7 @@ export default {
                 shadowBlur: 20
               }
             },
-            data: [281.55, 398.35, 414.02, 479.55, 589.57, 626.14]
+            data: [393, 438, 485, 631, 689, 824, 987].map(item => item + Math.ceil(Math.random() * 120))
           }
         ]
       }

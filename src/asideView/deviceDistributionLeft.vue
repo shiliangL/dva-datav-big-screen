@@ -14,6 +14,7 @@
       <DvaTitleBar title="设备区域统计" />
       <div class="content">
         <DvaChartPie
+          style="height:180px"
           class="dva-chart-box"
           :chartData="chartData"
         ></DvaChartPie>
@@ -23,7 +24,7 @@
       <DvaTitleBar title="设备动态排名情况" />
       <div class="content">
         <dva-core-chart
-          class="dva-chart-box"
+          style="height:160px"
           @ready="barReady"
           :option="barOption"
         />
@@ -32,16 +33,19 @@
     <div class="datav-aside-item">
       <DvaTitleBar title="设备增长趋势" />
       <div class="content">
-        <dva-chart-line
-          class="dva-chart-box"
-          />
-          <!-- :option="lineOption" -->
+        <dva-core-chart
+          style="height:180px"
+          :option="lineOption"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
+const { echarts } = window
+
 export default {
   name: 'DeviceDistributionLeft',
   desc: '设备分布左边面板',
@@ -167,80 +171,149 @@ export default {
         animationEasingUpdate: 'linear'
       },
       lineOption: {
-        title: {
-          show: false,
-          text: '全国省份动态排名'
+        tooltip: {
+          trigger: 'axis'
         },
         legend: {
-          show: false
+          top: 0,
+          right: 10,
+          show: true,
+          icon: 'stack',
+          textStyle: {
+            color: '#fff'
+          },
+          itemWidth: 10,
+          itemHeight: 10,
+          data: ['注册总量', '安装总量']
         },
         grid: {
-          top: '2%',
-          left: '6%',
-          right: '10%',
+          top: '8%',
+          left: '5%',
+          right: '5%',
           bottom: '2%',
           containLabel: true
         },
         xAxis: [{
-          show: false,
-          type: 'value',
-          max: 'dataMax'
-        }],
-        yAxis: [{
-          max: 4, // only
           type: 'category',
-          inverse: true,
-          animationDuration: 300,
-          animationDurationUpdate: 300,
-          data: [
-            '广东',
-            '江苏',
-            '山东',
-            '浙江',
-            '河北',
-            '北京',
-            '上海'
-          ],
-          axisLabel: {
-            fontSize: 14
-          },
-          // y轴线
           axisLine: {
-            show: false,
-            lineStyle: {
-              color: '#fff'
-            }
+            show: true
           },
-          // y轴刻度线
-          axisTick: {
+          axisLabel: {
+            color: '#fff'
+          },
+          splitLine: {
             show: false
           },
-          // y轴水平线
+          boundaryGap: true,
+          data: new Array(6).fill(0).map((value, index) => (2018 + index))
+        }],
+        yAxis: [{
+          type: 'value',
+          splitNumber: 4,
           splitLine: {
+            show: false,
+            lineStyle: {
+              color: 'rgba(255,255,255,0.1)'
+            }
+          },
+          axisLine: {
+            show: false
+          },
+          axisLabel: {
+            show: false,
+            // margin: 20,
+            textStyle: {
+              color: '#d1e6eb'
+            }
+          },
+          axisTick: {
             show: false
           }
         }],
         series: [
           {
-            name: 'X',
-            type: 'bar',
-            barWidth: 16,
-            realtimeSort: true,
-            data: new Array(7).fill(0).map((value, index) => (Math.round(Math.random() * 100))),
+            name: '注册总量',
+            type: 'line',
+            smooth: true, // 是否平滑
+            showAllSymbol: true,
+            symbol: 'circle',
+            symbolSize: 12,
+            lineStyle: {
+              normal: {
+                color: '#00b3f4',
+                shadowColor: 'rgba(0, 0, 0, .3)',
+                shadowBlur: 0,
+                shadowOffsetY: 5,
+                shadowOffsetX: 5
+              }
+            },
             label: {
+              show: false,
+              position: 'top',
               fontSize: 14,
-              show: true,
-              color: '#FFF',
-              position: 'right',
-              valueAnimation: true
+              textStyle: {
+                color: '#00b3f4'
+              }
             },
             itemStyle: {
+              color: '#00b3f4',
+              borderColor: '#fff',
+              borderWidth: 0,
+              shadowColor: 'rgba(0, 0, 0, .3)',
+              shadowBlur: 0,
+              shadowOffsetY: 2,
+              shadowOffsetX: 2
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: 'rgba(0,179,244,0.3)'
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(0,179,244,0)'
+                }
+                ], false),
+                shadowColor: 'rgba(0,179,244, 0.9)',
+                shadowBlur: 20
+              }
+            },
+            data: [393, 438, 485, 631, 689, 824, 987]
+          },
+          {
+            name: '安装总量',
+            type: 'bar',
+            barWidth: 22,
+            smooth: true, // 是否平滑
+            showAllSymbol: true,
+            symbol: 'circle',
+            symbolSize: 12,
+            lineStyle: {
+              normal: {
+                color: '#00ca95',
+                shadowColor: 'rgba(0, 0, 0, .3)',
+                shadowBlur: 0,
+                shadowOffsetY: 5,
+                shadowOffsetX: 5
+              }
+            },
+            label: {
+              show: true,
+              fontSize: 14,
+              position: 'top',
+              textStyle: {
+                color: '#fff'
+              }
+            },
+            itemStyle: {
+              // color: '#00ca95',
               color: {
                 type: 'linear',
                 x: 0,
                 y: 0,
-                x2: 1,
-                y2: 0,
+                x2: 0,
+                y2: 1,
                 colorStops: [{
                   offset: 0,
                   color: 'rgba(0,244,255,1)'
@@ -250,14 +323,32 @@ export default {
                   color: 'rgba(0,77,167,1)'
                 }
                 ]
+              },
+              borderWidth: 0,
+              borderColor: '#fff',
+              shadowColor: 'rgba(0, 0, 0, .3)',
+              shadowBlur: 0,
+              shadowOffsetY: 2,
+              shadowOffsetX: 2
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: 'rgba(0,202,149,0.3)'
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(0,202,149,0)'
+                }
+                ], false),
+                shadowColor: 'rgba(0,202,149, 0.9)',
+                shadowBlur: 20
               }
-            }
+            },
+            data: [393, 438, 485, 631, 689, 824, 987].map(item => item + Math.ceil(Math.random() * 120))
           }
-        ],
-        animationDuration: 3000,
-        animationDurationUpdate: 3000,
-        animationEasing: 'linear',
-        animationEasingUpdate: 'linear'
+        ]
       }
     }
   },

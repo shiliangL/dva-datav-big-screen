@@ -126,3 +126,21 @@ ol,
 li {
   list-style: none;
 }
+
+
+// 整体样式
+.datav-aside {
+  .datav-aside-item {
+    .content {
+      padding: 10px 10px;
+    }
+  }
+
+  .datav-aside-item:not(:last-child) {
+    margin-bottom: 6px;
+  }
+
+  .dva-chart-box {
+    height: 190px;
+  }
+}

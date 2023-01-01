@@ -1,6 +1,12 @@
 <template>
   <div class="page">
     关于其他
+
+    DvaTitleBar
+    <div class="box">
+      <DvaTitleBar title="设备增长趋势" />
+    </div>
+
     <dva-progress-list />
 
     <div class="box">
@@ -12,6 +18,7 @@
     <div class="box">
       <DvaChartLine />
     </div>
+
   </div>
 </template>
 

@@ -5,6 +5,9 @@ const { echarts } = window
 
 export default {
   name: 'DvaChartLine',
+  props: {
+
+  },
   components: {
     DvaCoreChart
   },
@@ -14,11 +17,23 @@ export default {
         tooltip: {
           trigger: 'axis'
         },
+        legend: {
+          top: 0,
+          right: 10,
+          show: true,
+          icon: 'stack',
+          textStyle: {
+            color: '#fff'
+          },
+          itemWidth: 10,
+          itemHeight: 10,
+          data: ['注册总量', '安装总量']
+        },
         grid: {
-          top: '14%',
-          left: '4%',
-          right: '4%',
-          bottom: '4%',
+          top: '10%',
+          left: '5%',
+          right: '5%',
+          bottom: '2%',
           containLabel: true
         },
         xAxis: [{
@@ -33,13 +48,13 @@ export default {
             show: false
           },
           boundaryGap: false,
-          data: ['A', 'B', 'C', 'D', 'E', 'F']
+          data: new Array(6).fill(0).map((value, index) => (2018 + index))
         }],
         yAxis: [{
           type: 'value',
           splitNumber: 4,
           splitLine: {
-            show: true,
+            show: false,
             lineStyle: {
               color: 'rgba(255,255,255,0.1)'
             }
@@ -49,7 +64,7 @@ export default {
           },
           axisLabel: {
             show: false,
-            margin: 20,
+            // margin: 20,
             textStyle: {
               color: '#d1e6eb'
             }
@@ -106,10 +121,10 @@ export default {
                 shadowBlur: 20
               }
             },
-            data: [502.84, 205.97, 332.79, 281.55, 398.35, 214.02]
+            data: [102.84, 205.97, 332.79, 381.55, 398.35, 414.02]
           },
           {
-            name: '注册总量',
+            name: '安装总量',
             type: 'line',
             smooth: true, // 是否平滑
             showAllSymbol: true,
@@ -155,7 +170,7 @@ export default {
                 shadowBlur: 20
               }
             },
-            data: [281.55, 398.35, 214.02, 179.55, 289.57, 356.14]
+            data: [281.55, 398.35, 414.02, 479.55, 589.57, 626.14]
           }
         ]
       }

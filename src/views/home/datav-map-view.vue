@@ -17,8 +17,8 @@ export default {
         zooms: [4, 8],
         zoom: 4.5,
         pitch: 35,
-        showLabel: false,
         viewMode: '3D',
+        showLabel: false,
         center: [105.425968, 35.882505],
         mapStyle: 'amap://styles/dark'
       })

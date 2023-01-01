@@ -28,18 +28,56 @@ export default {
   methods: {
     select (row) {
       console.log(row)
-      this.$DvaWinManager.openWin({
-        type: 'left',
-        styles: {
-        },
-        content: () => import('@/views/aside/smartCityLeftLv1.vue')
-      })
-      this.$DvaWinManager.openWin({
-        type: 'right',
-        styles: {
-        },
-        content: () => import('@/views/aside/smartCityLeftLv1.vue')
-      })
+      switch (row.key) {
+        case 1:
+          // 设备分布
+          this.$DvaWinManager.openWin({
+            type: 'left',
+            styles: {
+            },
+            content: () => import('@/asideView/deviceDistributionLeft.vue')
+          })
+          this.$DvaWinManager.openWin({
+            type: 'right',
+            styles: {
+            },
+            content: () => import('@/asideView/deviceDistributionRight.vue')
+          })
+          break
+        case 2:
+          // 设备概况
+          this.$DvaWinManager.openWin({
+            type: 'left',
+            styles: {
+            },
+            content: () => import('@/asideView/deviceOverviewLeft.vue')
+          })
+          this.$DvaWinManager.openWin({
+            type: 'right',
+            styles: {
+            },
+            content: () => import('@/asideView/deviceOverviewRight.vue')
+          })
+          break
+        case 3:
+          // 设备总览
+          this.$DvaWinManager.openWin({
+            type: 'left',
+            styles: {
+            },
+            content: () => import('@/asideView/deviceOverviewLeft.vue')
+          })
+          this.$DvaWinManager.openWin({
+            type: 'right',
+            styles: {
+            },
+            content: () => import('@/asideView/deviceOverviewRight.vue')
+          })
+          break
+
+        default:
+          break
+      }
     }
   }
 }

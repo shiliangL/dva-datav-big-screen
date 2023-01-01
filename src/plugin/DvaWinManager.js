@@ -89,19 +89,19 @@ class DvaWinManager {
             props: {}
           },
           [
-            h(
-              'div',
-              {
-                class: 'close',
-                on: {
-                  click: this.close
-                },
-                style: {
-                  ...commonStyle.close
-                }
-              },
-              ['关闭', this.show]
-            ),
+            // h(
+            //   'div',
+            //   {
+            //     class: 'close',
+            //     on: {
+            //       click: this.close
+            //     },
+            //     style: {
+            //       ...commonStyle.close
+            //     }
+            //   },
+            //   ['关闭', this.show]
+            // ),
             this.show ? h('contentMain') : null
           ]
         )

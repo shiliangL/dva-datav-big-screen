@@ -16,7 +16,7 @@ export default {
           activeImg: require('@/assets/images/link/btn_style1_choosed@2x.png')
         },
         {
-          name: '城市概览',
+          name: '设备概览',
           key: 2,
           path: '/datav',
           icon: require('@/assets/images/link/navigation2_ICON2_normal@2x.png'),

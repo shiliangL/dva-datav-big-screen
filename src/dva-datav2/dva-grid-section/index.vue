@@ -1,4 +1,5 @@
 <script>
+import DvaCount2 from 'dva-datav2/dva-count2'
 import DvaGridPanel from 'dva-datav2/dva-grid-panel'
 
 export default {
@@ -70,6 +71,7 @@ export default {
     }
   },
   components: {
+    DvaCount2,
     DvaGridPanel
   },
   methods: {
@@ -116,7 +118,7 @@ export default {
             h('div', { class: 'grid-title' }, [kk.text]),
             h('div', { class: 'dva-number-unit' }, [
               h('div', { class: 'grid-content' }, [kk.content] || kk.num),
-              h('div', { class: 'grid-num' }, kk.num),
+              h('dva-count2', { class: 'grid-num', props: { end: kk.num } }),
               h('span', { class: 'unit' }, [kk.unit])
             ])
           ])

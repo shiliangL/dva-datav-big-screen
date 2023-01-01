@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="datav-aside-item">
-      <DvaTitleBar title="设备动态排名情况" />
+      <DvaTitleBar title="设备动态排名" />
       <div class="content">
         <dva-core-chart
           style="height:160px"

@@ -94,7 +94,7 @@ export default {
       // 'radius1', 'radius2', 'radius3', 'rect1', 'rect2','rect3', 'iconfont xxxx'
       type: String,
       desc: '汇总描述',
-      default: () => 'radius1' || 'iconfont icon-chart-bar'
+      default: () => 'rect2' || 'iconfont icon-chart-bar'
     },
     legendClassName: {
       type: String,

@@ -1,4 +1,7 @@
 <script>
+
+import DvaCount2 from 'dva-datav2/dva-count2'
+
 export default {
   name: 'DvaProgressList',
   props: {
@@ -33,6 +36,9 @@ export default {
       default: () => true
     }
   },
+  components: {
+    DvaCount2
+  },
   computed: {
     renderList () {
       const list = this.isSort ? (this.dataList.slice(0).sort(({ value: a }, { value: b }) => (b - a))) : this.dataList
@@ -60,7 +66,7 @@ export default {
                   h('span', {}, kk.name)
                 ]),
                 h('div', { class: 'flex-box-item value' }, [
-                  h('span', {}, kk.value),
+                  h('DvaCount2', { props: { end: kk.value } }),
                   h('span', { class: 'unit' }, kk.unit)
                 ])
               ]),
@@ -98,6 +104,8 @@ export default {
       font-family: Blender;
       font-weight: 500;
       color: #63e1ff;
+      display: flex;
+      align-items: baseline;
     }
     .unit {
       font-size: 12px;

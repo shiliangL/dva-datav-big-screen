@@ -24,7 +24,7 @@
       <DvaTitleBar title="设备动态排名" />
       <div class="content">
         <dva-core-chart
-          style="height:160px"
+          style="height:180px"
           @ready="barReady"
           :option="barOption"
         />
@@ -34,7 +34,7 @@
       <DvaTitleBar title="设备增长统计" />
       <div class="content">
         <dva-core-chart
-          style="height:180px"
+          style="height:220px"
           :option="lineOption"
           @ready="lineReady"
         />
@@ -136,7 +136,7 @@ export default {
           {
             name: 'X',
             type: 'bar',
-            barWidth: 16,
+            barWidth: 18,
             realtimeSort: true,
             data: new Array(7).fill(0).map((value, index) => (Math.round(Math.random() * 100))),
             label: {
@@ -191,12 +191,12 @@ export default {
           textStyle: {
             color: '#fff'
           },
-          itemWidth: 10,
-          itemHeight: 10,
+          itemWidth: 12,
+          itemHeight: 12,
           data: ['注册总量', '安装总量']
         },
         grid: {
-          top: '16%',
+          top: '12%',
           left: '2%',
           right: '2%',
           bottom: '2%',
@@ -218,7 +218,6 @@ export default {
         }],
         yAxis: [{
           type: 'value',
-          splitNumber: 4,
           splitLine: {
             show: false,
             lineStyle: {
@@ -230,7 +229,6 @@ export default {
           },
           axisLabel: {
             show: false,
-            // margin: 20,
             textStyle: {
               color: '#d1e6eb'
             }

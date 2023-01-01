@@ -5,7 +5,7 @@
       <DvaTitleBar title="设备异常统计" />
       <div class="content">
         <dva-core-chart
-          :option="lineOption"
+          :option="lineOption1"
           style="height:180px"
           @ready="lineReady1"
         />
@@ -92,7 +92,7 @@ export default {
         { name: '设备异常4', value: 1526, unit: '项' },
         { name: '设备异常5', value: 1328, unit: '项' }
       ],
-      lineOption: {
+      lineOption1: {
         backgroundColor: 'transparent',
         grid: {
           top: '4%',
@@ -165,7 +165,7 @@ export default {
         }],
         series: [
           {
-            name: '订单量',
+            name: '设备异常统计',
             type: 'line',
             symbolSize: 10,
             symbol: 'circle',

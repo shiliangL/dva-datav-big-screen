@@ -23,13 +23,15 @@
       <DvaTitleBar title="设备类型统计" />
       <div class="content">
         <dva-capsule-bar
-        class="capsule-bar-title"
+          class="capsule-bar-title"
           :config="item"
           v-for="(item,index) in capsuleList"
           :key="index"
         ></dva-capsule-bar>
         <DvaChartPie
           style="height:180px"
+          :showDecorator="false"
+          :showDecoratorLine="false"
           class="dva-chart-box"
           :chartData="chartData"
         ></DvaChartPie>
@@ -83,11 +85,11 @@ export default {
         }
       ],
       chartData: [
-        { name: '物联设备', value: 8622 },
-        { name: '烟感设备', value: 4016 },
-        { name: '温控设备', value: 3023 },
-        { name: '远程设备', value: 2621 },
-        { name: '其他设备', value: 2012 }
+        { name: '物联设备', value: 8612 },
+        { name: '烟感设备', value: 4216 },
+        { name: '温控设备', value: 3123 },
+        { name: '远程设备', value: 2226 },
+        { name: '其他设备', value: 2088 }
       ]
     }
   },
@@ -104,7 +106,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.capsule-bar-title{
+.capsule-bar-title {
   margin-bottom: 18px;
 }
 </style>
